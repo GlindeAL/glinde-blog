@@ -1,0 +1,44 @@
+<template>
+  <nav>
+    <ul>
+      <li><router-link class="admin-link" to="/admin/edit" exact>编辑博客</router-link></li>
+      <li><router-link class="admin-link" to="/admin/blogs" exact>博客管理</router-link></li>
+      <li><router-link class="admin-link" to="/admin/mailbox" exact>信箱管理</router-link></li>
+    </ul>
+  </nav>
+</template>
+
+<script>
+export default {
+  name: "AdminHeader"
+}
+</script>
+
+<style scoped>
+nav {
+  background-color: #3c4856;
+}
+ul {
+  list-style-type: none;
+  text-align: center;
+  margin: 0 auto;
+}
+li {
+  display: inline-block;
+  margin: 8px 15px;
+}
+a {
+  display: inline-block;
+  font-size: 30px;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: background-color 0.15s;
+}
+.admin-link{
+  width: 160px;
+}
+.router-link-active {
+  background-color: #6a839f;
+}
+</style>

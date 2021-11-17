@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.glinde.www.dao.MailboxDao">
+  <resultMap id="BaseResultMap" type="me.glinde.www.entity.Mailbox">
+    <constructor>
+      <idArg column="mid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="content" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="date" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="state" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    mid, content, date, state
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mailbox
+    where mid = #{mid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mailbox
+    where mid = #{mid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="me.glinde.www.entity.Mailbox">
+    insert into mailbox (mid, content, date, 
+      state)
+    values (#{mid,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{date,jdbcType=VARCHAR}, 
+      #{state,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="me.glinde.www.entity.Mailbox">
+    insert into mailbox
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mid != null">
+        mid,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mid != null">
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="me.glinde.www.entity.Mailbox">
+    update mailbox
+    <set>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        date = #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+    </set>
+    where mid = #{mid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="me.glinde.www.entity.Mailbox">
+    update mailbox
+    set content = #{content,jdbcType=VARCHAR},
+      date = #{date,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER}
+    where mid = #{mid,jdbcType=INTEGER}
+  </update>
+
+  <select id="getAllMails" resultType="me.glinde.www.entity.Mailbox">
+    select mid,content,date from mailbox
+    <where>
+      <if test="query != null">
+        content like concat("%",#{query},"%")
+      </if>
+      and state = 1
+    </where>
+    order by mid desc limit #{pageStart},#{pageSize}
+  </select>
+
+  <select id="getMailCounts" resultType="java.lang.Integer">
+    select count(*) from mailbox
+    <where>
+      <if test="query != null">
+        content like concat("%",#{query},"%")
+      </if>
+      and state = 1
+    </where>
+  </select>
+
+  <select id="getAdminMails" resultType="me.glinde.www.entity.Mailbox">
+    select mid,content,date,state from mailbox
+    <where>
+      <if test="query != null">
+        content like concat("%",#{query},"%")
+      </if>
+    </where>
+    order by mid desc limit #{pageStart},#{pageSize}
+  </select>
+
+  <select id="getAdminMailCounts" resultType="java.lang.Integer">
+    select count(*) from mailbox
+    <where>
+      <if test="query != null">
+        content like concat("%",#{query},"%")
+      </if>
+    </where>
+  </select>
+</mapper>
