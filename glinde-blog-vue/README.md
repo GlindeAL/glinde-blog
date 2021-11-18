@@ -1,4 +1,4 @@
-# Glinde's Blog
+# glinde-blog
 
 ## Project setup
 
