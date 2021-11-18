@@ -7,7 +7,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@MapperScan("me.glinde.www.dao")
+@MapperScan("me.glinde.blog.dao")
 @SpringBootApplication
 @EnableTransactionManagement
 public class BlogApplication extends SpringBootServletInitializer {

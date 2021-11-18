@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>me.glinde</groupId>
-    <artifactId>myblog</artifactId>
+    <artifactId>glinde-blog</artifactId>
     <version>0.2.0</version>
-    <name>www</name>
+    <name>blog</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>11</java.version>

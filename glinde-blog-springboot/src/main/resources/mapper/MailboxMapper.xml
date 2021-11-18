@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="me.glinde.www.dao.MailboxDao">
-  <resultMap id="BaseResultMap" type="me.glinde.www.entity.Mailbox">
+<mapper namespace="me.glinde.blog.dao.MailboxDao">
+  <resultMap id="BaseResultMap" type="me.glinde.blog.entity.Mailbox">
     <constructor>
       <idArg column="mid" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="content" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -22,13 +22,13 @@
     delete from mailbox
     where mid = #{mid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="me.glinde.www.entity.Mailbox">
+  <insert id="insert" parameterType="me.glinde.blog.entity.Mailbox">
     insert into mailbox (mid, content, date, 
       state)
     values (#{mid,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{date,jdbcType=VARCHAR}, 
       #{state,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="me.glinde.www.entity.Mailbox">
+  <insert id="insertSelective" parameterType="me.glinde.blog.entity.Mailbox">
     insert into mailbox
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="mid != null">
@@ -59,7 +59,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="me.glinde.www.entity.Mailbox">
+  <update id="updateByPrimaryKeySelective" parameterType="me.glinde.blog.entity.Mailbox">
     update mailbox
     <set>
       <if test="content != null">
@@ -74,7 +74,7 @@
     </set>
     where mid = #{mid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="me.glinde.www.entity.Mailbox">
+  <update id="updateByPrimaryKey" parameterType="me.glinde.blog.entity.Mailbox">
     update mailbox
     set content = #{content,jdbcType=VARCHAR},
       date = #{date,jdbcType=VARCHAR},
@@ -82,7 +82,7 @@
     where mid = #{mid,jdbcType=INTEGER}
   </update>
 
-  <select id="getAllMails" resultType="me.glinde.www.entity.Mailbox">
+  <select id="getAllMails" resultType="me.glinde.blog.entity.Mailbox">
     select mid,content,date from mailbox
     <where>
       <if test="query != null">
@@ -103,7 +103,7 @@
     </where>
   </select>
 
-  <select id="getAdminMails" resultType="me.glinde.www.entity.Mailbox">
+  <select id="getAdminMails" resultType="me.glinde.blog.entity.Mailbox">
     select mid,content,date,state from mailbox
     <where>
       <if test="query != null">

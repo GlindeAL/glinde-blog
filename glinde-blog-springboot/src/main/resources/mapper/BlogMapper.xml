@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="me.glinde.www.dao.BlogDao">
-  <resultMap id="BaseResultMap" type="me.glinde.www.entity.Blog">
+<mapper namespace="me.glinde.blog.dao.BlogDao">
+  <resultMap id="BaseResultMap" type="me.glinde.blog.entity.Blog">
     <constructor>
       <idArg column="bid" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -25,7 +25,7 @@
     delete from blog
     where bid = #{bid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="me.glinde.www.entity.Blog">
+  <insert id="insert" parameterType="me.glinde.blog.entity.Blog">
     insert into blog (bid, title, description, 
       content, date, author, 
       state)
@@ -33,7 +33,7 @@
       #{content,jdbcType=VARCHAR}, #{date,jdbcType=VARCHAR}, #{author,jdbcType=INTEGER}, 
       #{state,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="me.glinde.www.entity.Blog">
+  <insert id="insertSelective" parameterType="me.glinde.blog.entity.Blog">
     insert into blog
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="bid != null">
@@ -82,7 +82,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="me.glinde.www.entity.Blog">
+  <update id="updateByPrimaryKeySelective" parameterType="me.glinde.blog.entity.Blog">
     update blog
     <set>
       <if test="title != null">
@@ -106,7 +106,7 @@
     </set>
     where bid = #{bid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="me.glinde.www.entity.Blog">
+  <update id="updateByPrimaryKey" parameterType="me.glinde.blog.entity.Blog">
     update blog
     set title = #{title,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
@@ -117,7 +117,7 @@
     where bid = #{bid,jdbcType=INTEGER}
   </update>
 
-  <select id="getAllBlogs" resultType="me.glinde.www.entity.Blog">
+  <select id="getAllBlogs" resultType="me.glinde.blog.entity.Blog">
     select bid,title,description,date from blog
     <where>
       <if test="query != null">
@@ -138,7 +138,7 @@
     </where>
   </select>
 
-  <select id="getAdminBlogs" resultType="me.glinde.www.entity.Blog">
+  <select id="getAdminBlogs" resultType="me.glinde.blog.entity.Blog">
     select bid,title,description,date,state from blog
     <where>
       <if test="query != null">
