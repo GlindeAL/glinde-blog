@@ -19,8 +19,6 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   name: "EditBlog",
   data(){
@@ -75,7 +73,7 @@ export default {
         }
       });
       if(res.flag==="success"){
-        this.$refs.md.$img2Url(pos,axios.defaults.baseURL+res.url);
+        this.$refs.md.$img2Url(pos,this.$http.defaults.baseURL+res.url);
       }
     },
     imgDel(){

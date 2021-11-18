@@ -67,8 +67,6 @@
 </template>
 
 <script>
-import axios from "_axios@0.21.1@axios";
-
 export default {
   name: "AdminBlogs",
   created() {
@@ -128,7 +126,7 @@ export default {
         }
       });
       if(res.flag==="success"){
-        this.$refs.md.$img2Url(pos,axios.defaults.baseURL+res.url);
+        this.$refs.md.$img2Url(pos,this.$http.defaults.baseURL+res.url);
       }
     },
     imgDel(){

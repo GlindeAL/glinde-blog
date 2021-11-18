@@ -69,7 +69,6 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to,from,next) => {
-  document.title = "Glinde Personal Website";
   if(to.meta.requireAuth){
     const token = window.localStorage.getItem("token");
     if(!token){

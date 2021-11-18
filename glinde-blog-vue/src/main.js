@@ -11,7 +11,7 @@ import mavonEditer from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 
 Vue.prototype.$http = axios
-axios.defaults.baseURL = "https://glinde.me:8443"
+axios.defaults.baseURL = "http://localhost:8080"
 axios.defaults.timeout = 5000
 axios.interceptors.request.use(
     config => {
